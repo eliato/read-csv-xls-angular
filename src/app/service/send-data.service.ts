@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient,HttpErrorResponse  } from '@angular/common/http';
-export interface Datacsv {
-  codigo: Number,
-  monto: Number,
-  nombreArchivo: String,
-  userUpload: String
-}
+import { DataFile } from "../data-file";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +11,7 @@ export class SendDataService {
 
   constructor( private httpClient: HttpClient ) { }
 
-  sendData(file: Datacsv[]){
+  sendData(file: DataFile[]){
     return this.httpClient.post(this.urlServer, file, {responseType: 'text'})
   }
 

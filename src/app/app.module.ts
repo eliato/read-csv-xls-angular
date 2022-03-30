@@ -4,10 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { SendFileComponent } from './components/send-file/send-file.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UploadFileComponent,
+    SendFileComponent
   ],
   imports: [
     BrowserModule,

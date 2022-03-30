@@ -60,12 +60,13 @@ export class AppComponent {
 
         //aca extraigo los codigo del JSON
       const codEmp: Number[] = [];
-      this.datos.forEach(element => {
+      this.datos.forEach(element  => {
           codEmp.push(element.codigo)
-
+          var temp = {codigo: element.codigo, monto: element.monto, nombreArchivo: nameFile, usuario: "admin" }
+          this.uploadfile.push(temp)
         });
-        console.log(codEmp);
 
+        JSON.stringify(this.uploadfile, undefined, 4);
         //Aca le paso el codigo extraido anteriormente al JSON inicial para sacar los duplicados
        const duplicados = this.datos.filter((value, index) => codEmp.indexOf(value.codigo) !== index)
        //console.log(duplicados.map(e => e.codigo) );
@@ -82,7 +83,9 @@ export class AppComponent {
   }
 
   sendData(){
-    return this._serviceData.sendData(this.datos)
+
+
+    return this._serviceData.sendData(this.uploadfile)
     .subscribe( (resp) => {
       console.log(resp);
     } )
@@ -94,5 +97,5 @@ export interface Datacsv {
   codigo: Number,
   monto: Number,
   nombreArchivo: String,
-  userUpload: String
+  usuario: String
 }

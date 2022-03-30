@@ -1,0 +1,72 @@
+ <!-- Begin Page Content -->
+ <div class="container-fluid">
+
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Pago de Subsidio BCR</h1>
+  </div>
+
+
+  <div class="row">
+
+      <!-- Area Chart -->
+      <div class="col-xl-12 col-lg-7">
+          <div class="card shadow mb-4 border-bottom-secondary">
+              <!-- Card Header - Dropdown -->
+              <div
+                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h5 class="m-0 font-weight-bold text-primary">Cargar Archivo</h5>
+                  <div class="dropdown no-arrow">
+                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                      </a>
+
+                  </div>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+
+                    <div>
+                      <h5>Archivo a Cargar: {{ nameFile }}</h5>
+                    </div>
+                    <form id="file-upload-form" class="uploader">
+                      <input id="file-upload" type="file" name="fileUpload" accept=".xls,.xlsx,.csv"
+                      (change)="fileUpload($event)" />
+                      <div class="alert alert-danger" role="alert" *ngIf="showMonto">
+                        {{ errorMonto }}<br>
+                        {{ montosInvalidos }}
+                      </div>
+                      <div class="alert alert-success" role="alert" *ngIf="showCodigo">
+                        {{ errorCodigo }}<br>
+                        {{ codigosInvalidos }}
+                      </div>
+                      <label for="file-upload" id="file-drag">
+                        <img id="file-image" src="#" alt="Preview" class="hidden">
+                        <div id="start">
+                          <i class="fa fa-download" aria-hidden="true"></i>
+                          <div>Seleccione archivo</div>
+                          <span id="file-upload-btn" class="btn btn-primary">Abrir</span>
+                        </div>
+                        <div id="response" class="hidden">
+                          <div id="messages"></div>
+                          <progress class="progress" id="file-progress" value="0">
+                            <span>0</span>%
+                          </progress>
+                        </div>
+                      </label>
+
+                        <button class="btn btn-success" (click)="sendData()" type="button">Procesar</button>
+
+                    </form>
+
+
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+
+
+</div>
