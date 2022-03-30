@@ -62,9 +62,9 @@ export class AppComponent {
       const codEmp: Number[] = [];
       this.datos.forEach(element => {
           codEmp.push(element.codigo)
-          this.uploadfile.push(element)
+
         });
-        console.log(this.uploadfile);
+        console.log(codEmp);
 
         //Aca le paso el codigo extraido anteriormente al JSON inicial para sacar los duplicados
        const duplicados = this.datos.filter((value, index) => codEmp.indexOf(value.codigo) !== index)
