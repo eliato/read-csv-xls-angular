@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { SendFileComponent } from './components/send-file/send-file.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadFileComponent,
-    SendFileComponent
+    SendFileComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

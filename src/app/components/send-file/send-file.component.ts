@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { SendDataService } from '../../service/send-data.service';
 @Component({
   selector: 'app-send-file',
   templateUrl: './send-file.component.html',
@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SendFileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _serviceData: SendDataService) { }
+
+
+  procesar(){
+    console.log(this._serviceData.procesar());
+
+  }
 
   ngOnInit(): void {
   }
