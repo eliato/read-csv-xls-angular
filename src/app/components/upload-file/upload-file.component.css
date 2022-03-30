@@ -106,3 +106,19 @@
   margin: 0 0 0.5rem 0;
   color: #5f6982;
 }
+.alert {
+  animation-duration: 1s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}

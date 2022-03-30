@@ -3,7 +3,7 @@
 
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">Pago de Subsidio BCR</h1>
+
   </div>
 
 
@@ -13,8 +13,7 @@
       <div class="col-xl-12 col-lg-7">
           <div class="card shadow mb-4 border-bottom-secondary">
               <!-- Card Header - Dropdown -->
-              <div
-                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h5 class="m-0 font-weight-bold text-primary">Cargar Archivo</h5>
                   <div class="dropdown no-arrow">
                       <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -26,9 +25,10 @@
               </div>
               <!-- Card Body -->
               <div class="card-body">
+                    <div class="alert alert-info" *ngIf="nameFile">
+                      <h6>Archivo a Cargar: {{ nameFile }}</h6>
+                      <h6>Numero Empleados: {{ nCodigos }}</h6>
 
-                    <div>
-                      <h5>Archivo a Cargar: {{ nameFile }}</h5>
                     </div>
                     <form id="file-upload-form" class="uploader">
                       <input id="file-upload" type="file" name="fileUpload" accept=".xls,.xlsx,.csv"
