@@ -1,10 +1,10 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+/*@import url("https://fonts.googleapis.com/css?family=Roboto");*/
 html,
 body,
 * {
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 html,
@@ -22,7 +22,7 @@ h2 {
   font-family: "Roboto", sans-serif;
   font-size: 26px;
   line-height: 1;
-  color: #454cad;
+  color: #000768;
   margin-bottom: 0;
 }
 
@@ -55,10 +55,10 @@ p {
   user-select: none;
 }
 .uploader label:hover {
-  border-color: #454cad;
+  border-color: #12186b;
 }
 .uploader label.hover {
-  border: 3px solid #454cad;
+  border: 3px solid #000766;
   box-shadow: inset 0 0 0 6px #eee;
 }
 .uploader label.hover #start i.fa {
@@ -158,7 +158,20 @@ p {
   color: #fff;
   transition: all 0.2s ease-in-out;
   box-sizing: border-box;
-  background: #454cad;
+  background: #191f69;
   border-color: #454cad;
   cursor: pointer;
+}
+.row{
+  display: block;
+  clear: both;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+
+}
+.row .btn{
+
+  color: #fff;
+  background: #008807;
 }
