@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  urlSend: 'http://10.217.1.188:8383/sath/api/subsidio/registrar-datos',
+  urlProcesar: 'http://10.217.1.188:8383/sath/api/subsidio'
 };
 
 /*

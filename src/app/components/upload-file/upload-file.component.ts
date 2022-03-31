@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as XLSX from "xlsx";
 import { SendDataService } from '../../service/send-data.service';
 import { DataFile } from "../../data-file";
 import swal from 'sweetalert2';
+import { Datacsv } from 'src/app/app.component';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-upload-file',
   templateUrl: './upload-file.component.html',
   styleUrls: ['./upload-file.component.css']
 })
-export class UploadFileComponent implements OnInit {
+export class UploadFileComponent implements OnInit, OnDestroy {
   title = 'subsidio-upload';
   convertedJson!: string;
   datos!: DataFile[] ;
@@ -23,12 +25,15 @@ export class UploadFileComponent implements OnInit {
   nameFile!: String;
   nCodigos!: any;
   nMontos!: any;
+  obs!: Subscription;
   constructor(private _serviceData: SendDataService) { }
+
+
 
   fileUpload(event:any){
     this.showMonto = false;
     this.showCodigo = false;
-
+    this.uploadfile.length = 0
     //console.log(event.target.files);
     const selectedFile = event.target.files[0];
     //aca extraigo el nombre del archivo
@@ -91,19 +96,35 @@ export class UploadFileComponent implements OnInit {
   }
 
   sendData(){
+    console.log(this.uploadfile)
     if (this.uploadfile.length === 0 ) {
       swal.fire('Debes Agregar un Archivo')
+      this.nameFile = ''
     }else if (this.codigosInvalidos.length > 0 || this.montosInvalidos.length > 0) {
       swal.fire('Se deben Corregir Errores en el Archivo')
+      this.nameFile = ''
     }else {
-    this._serviceData.sendData(this.uploadfile)
-    .subscribe( (resp) => {
-      console.log(resp);
-      if (resp == 'EXITO') {
-        swal.fire('Archivo Registrado con Exito')
-        this.nameFile = ''
+    this.obs = this._serviceData.sendData(this.uploadfile)
+    .subscribe( { next: (resp: any) => {
+      //console.log(resp[0].codigo);
+      const codigoError = []
+      for (let index = 0; index < resp.length; index++) {
+        const element = resp[index];
+        codigoError.push(element.codigo)
       }
+      const errorCodigo = Object.keys(resp).length
+      const totalCodigos = this.uploadfile.length
+      const mensaje = errorCodigo > 0? 'empleados no Existen':'';
+      swal.fire(`Total Empleados Archivo ${totalCodigos} \nTotal Procesados ${totalCodigos - errorCodigo} \n ${mensaje} ${codigoError}`)
+      this.nameFile = ''
+      this.uploadfile.length = 0
+
+    },
+    error: (e) => { swal.fire(`Ocurrio un Error \n ${e}` ) }
+
     } )
+
+
     }
 
 
@@ -111,6 +132,11 @@ export class UploadFileComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+  }
+
+  ngOnDestroy(): void {
+    this.obs.unsubscribe()
   }
 
 }
